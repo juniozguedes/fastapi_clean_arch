@@ -5,7 +5,9 @@ disable =
       C0114,
       C0116,
       C0115,
-      R0903                   #too few public methods
+      R0903, #too few public methods
+      W0718, #too broad exceptions
+      W0719  #too broad exceptions  
 
 # Analyse import fallback blocks. This can be used to support both Python 2 and
 # 3 compatible code, which means that the block might have code that exists

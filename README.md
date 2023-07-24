@@ -1,3 +1,11 @@
+# Pytest
+
+Pytest with logs:
+
+```
+ pytest -s -v
+```
+
 # Linter checking
 
 To check pre-commit status:
