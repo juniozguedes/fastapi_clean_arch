@@ -1,10 +1,12 @@
+from typing import List
 from src.infra.database.settings.connection import DatabaseHandler
 from src.infra.database.entities.posts import Posts as PostsEntity
+from src.data.interfaces.posts_repository import PostsRepositoryInterface
+from src.domain.models.posts import Posts
 
 
-class PostsRepository:
-    @classmethod
-    def insert_post(cls, title: str, content: str) -> None:
+class PostsRepository(PostsRepositoryInterface):
+    def insert_post(self, title: str, content: str) -> None:
         with DatabaseHandler() as db_session:
             try:
                 post_db = PostsEntity(
@@ -18,8 +20,7 @@ class PostsRepository:
                 db_session.rollback()
                 raise exception
 
-    @classmethod
-    def select_post(cls, title: str) -> any:
+    def select_post(self, title: str) -> List[Posts]:
         with DatabaseHandler() as db_session:
             try:
                 post = (
