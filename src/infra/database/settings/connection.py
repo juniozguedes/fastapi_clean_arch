@@ -3,6 +3,12 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 
+# Set environment variables
+os.environ[
+    "SQLALCHEMY_DATABASE_URI"
+] = "mysql+pymysql://root:mypassword@localhost:3306/flask_database"
+
+
 class DatabaseHandler:
     def __init__(self) -> None:
         self.__connection_string = os.getenv("SQLALCHEMY_DATABASE_URI")
