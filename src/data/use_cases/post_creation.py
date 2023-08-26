@@ -1,6 +1,7 @@
 from typing import Dict
 from src.domain.use_cases.post_creation import PostCreation as PostCreationInterface
 from src.data.interfaces.posts_repository import PostsRepositoryInterface
+from src.errors.types import HttpBadRequestError
 
 
 class PostCreation(PostCreationInterface):
@@ -17,10 +18,10 @@ class PostCreation(PostCreationInterface):
     def __validate_title(cls, title: str) -> None:
         # Validations
         if not title.isalpha():
-            raise Exception("Invalid Name contains alphanumerics")
+            raise HttpBadRequestError("Invalid Name contains alphanumerics")
 
         if len(title) > 18:
-            raise Exception("Name is above 18 characters")
+            raise HttpBadRequestError("Name is above 18 characters")
 
     def __register_post_information(self, title: str, content: str) -> None:
         self.__posts_repository.insert_post(title, content)
